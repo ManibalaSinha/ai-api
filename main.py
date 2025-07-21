@@ -1,4 +1,5 @@
 import os
+import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI, Depends, Header, HTTPException
 
@@ -44,3 +45,6 @@ async def caption_image_route(file: UploadFile = File(...)):
     image_bytes = await file.read()
     caption = generate_caption(image_bytes)
     return {"caption": caption}
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Render provides the PORT env variable
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
