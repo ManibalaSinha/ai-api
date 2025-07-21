@@ -18,5 +18,5 @@ if os.getenv("DISABLE_CAPTION") == "true":
         return "Image captioning disabled."
 else:
     # normal import or real function
-    from models.caption import generate_caption
+   
 
