@@ -11,12 +11,7 @@ def generate_caption(image_bytes: bytes) -> str:
     out = model.generate(**inputs)
     return processor.decode(out[0], skip_special_tokens=True)
  """
-import os
-
-if os.getenv("DISABLE_CAPTION") == "true":
-    def generate_caption(image_bytes: bytes) -> str:
-        return "Image captioning disabled."
-else:
-    # normal import or real function
+def generate_caption(image_bytes: bytes) -> str:
+    return "Image captioning is disabled on this instance."
    
 
