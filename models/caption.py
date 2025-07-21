@@ -1,4 +1,4 @@
-from transformers import BlipProcessor, BlipForConditionalGeneration
+""" from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 import io
 
@@ -10,3 +10,13 @@ def generate_caption(image_bytes: bytes) -> str:
     inputs = processor(image, return_tensors="pt")
     out = model.generate(**inputs)
     return processor.decode(out[0], skip_special_tokens=True)
+ """
+import os
+
+if os.getenv("DISABLE_CAPTION") == "true":
+    def generate_caption(image_bytes: bytes) -> str:
+        return "Image captioning disabled."
+else:
+    # normal import or real function
+    from models.caption import generate_caption
+
