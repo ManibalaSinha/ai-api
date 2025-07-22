@@ -6,3 +6,5 @@ transformers
 torch
 Pillow
 python-dotenv
+chardet
+
