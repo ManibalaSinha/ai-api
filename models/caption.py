@@ -1,16 +1,15 @@
 import io
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
+from functools import lru_cache
 
 # 🐢 Lazy-load only once
 processor = None
 model = None
-
+@lru_cache()
 def get_image_captioning_model():
-    global processor, model
-    if processor is None or model is None:
-        processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-        model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
     return processor, model
 
 def generate_caption(image_bytes: bytes) -> str:

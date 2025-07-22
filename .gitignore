@@ -1,6 +1,10 @@
-venv/
 __pycache__/
-*.pyc
 .env
-
+venv/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env.*
+.idea/
 .DS_Store
