@@ -1,5 +1,6 @@
 fastapi
 uvicorn
+gunicorn
 python-multipart
 openai
 transformers
@@ -7,4 +8,5 @@ torch
 Pillow
 python-dotenv
 chardet
+huggingface_hub
 
