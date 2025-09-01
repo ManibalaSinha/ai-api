@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Image to Summary App</title>
-</head>
-<body>
-    <h1>Upload an Image to Summarize</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required />
-        <button type="submit">Summarize</button>
-    </form>
-</body>
-</html>
+<script>
+async function summarize() {
+  const text = document.getElementById("text").value;
+  const response = await fetch("https://ai-api.com/predict", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({text})
+  });
+  const data = await response.json();
+  document.getElementById("result").innerText = data.summary;
+}
+</script>
