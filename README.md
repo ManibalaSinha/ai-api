@@ -1,4 +1,4 @@
-# DevStations — AI API Service (Production-Ready Microservice)
+# AI API Service (Production-Ready Microservice)
 
 This microservice includes robust API design, prompt engineering, caching, validation, observability, and deployment readiness.
 
@@ -151,3 +151,4 @@ Production-grade AI API service focused on prompt engineering, RAG pipelines, ca
 
 🌐 Project website:
 `https://manibalasinha.github.io/ai-api/`
+
