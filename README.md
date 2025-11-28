@@ -8,7 +8,7 @@ This microservice includes robust API design, prompt engineering, caching, valid
 
 ## Overview
 
-DevStations is a backend AI microservice built with TypeScript (FastAPI version also supported).
+AI API is a backend AI microservice built with TypeScript (FastAPI version also supported).
 It focuses on reliability, scalability, and clean architecture — not just calling LLMs, but doing it correctly, safely, and cost-effectively in production.
 
 This repository showcases:
@@ -153,6 +153,7 @@ Production-grade AI API service focused on prompt engineering, RAG pipelines, ca
 
 🌐 Project website:
 `https://manibalasinha.github.io/ai-api/`
+
 
 
 
