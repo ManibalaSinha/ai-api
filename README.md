@@ -1,7 +1,9 @@
 # AI API Service (Production-Ready Microservice)
 
 This microservice includes robust API design, prompt engineering, caching, validation, observability, and deployment readiness.
-
+<p align="center">
+  <img src="ai-api/assets/docs_screenshot.png" alt="Swagger UI" width="600">
+</p>
 ---
 
 ## Overview
@@ -92,12 +94,12 @@ Planned:
 
 | Feature Area                                   | Status          |
 | ---------------------------------------------- | --------------- |
-| Kubernetes multi-instance scaling              | 🔄 In Progress  |
-| Vector DB + RAG workflow (Pinecone / Weaviate) | 🔄 In Progress  |
-| Message queues + DLQ (RabbitMQ / Kafka)        | 🔄 In Progress  |
+| Kubernetes multi-instance scaling              |  In Progress  |
+| Vector DB + RAG workflow (Pinecone / Weaviate) |  In Progress  |
+| Message queues + DLQ (RabbitMQ / Kafka)        |  In Progress  |
 | PII Redaction                                  |  Implementing |
 | Moderation & Compliance                        |  Implementing |
-| Cost dashboards & alerts (Prometheus)          | 🔄 In Progress  |
+| Cost dashboards & alerts (Prometheus)          |  In Progress  |
 
 ---
 
