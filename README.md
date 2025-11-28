@@ -2,7 +2,7 @@
 
 This microservice includes robust API design, prompt engineering, caching, validation, observability, and deployment readiness.
 <p align="center">
-  <img src="ai-api/assets/docs_screenshot.png" alt="Swagger UI" width="600">
+  <img src="app/assets/docs_screenshot.png" alt="Swagger UI" width="600">
 </p>
 ---
 
@@ -153,4 +153,5 @@ Production-grade AI API service focused on prompt engineering, RAG pipelines, ca
 
 🌐 Project website:
 `https://manibalasinha.github.io/ai-api/`
+
 
