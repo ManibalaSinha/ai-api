@@ -2,7 +2,11 @@
 
 This microservice includes robust API design, prompt engineering, caching, validation, observability, and deployment readiness.
 <p align="center">
+<<<<<<< HEAD
   <img src="app/assets/docs_screenshot.png" alt="Swagger UI" width="600">
+=======
+  <img src="/app/assets/docs_screenshot.png" alt="Swagger UI" width="600">
+>>>>>>> 269c7d1 (app/assets)
 </p>
 ---
 
