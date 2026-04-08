@@ -16,7 +16,7 @@ app.add_middleware(
 # Include routes
 app.include_router(upload.router, prefix="/upload", tags=["Upload"])
 app.include_router(search.router, prefix="/search", tags=["Search"])
-
+app.include_router(ask.router, prefix="/ask", tags=["Ask"])
 @app.get("/")
 def root():
     return {"message": "AI Document Search API Running!"}
