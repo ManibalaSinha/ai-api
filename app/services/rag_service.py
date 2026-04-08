@@ -38,3 +38,17 @@ def rag_pipeline(query: str):
 
 def retrieve_docs(query: str):
     return [doc for doc in documents if query.lower() in doc.lower()]
+prompt = f"""
+You are a strict AI assistant.
+
+Rules:
+- Answer ONLY from context
+- If not found → say "I don't know"
+- Be concise
+
+Context:
+{context}
+
+Question:
+{query}
+"""
