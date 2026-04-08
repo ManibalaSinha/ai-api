@@ -1,14 +1,25 @@
-from app.services.rag_service import rag_pipeline
 from app.services.llm_service import call_llm
+from langchain.tools import Tool
+from langchain.agents import initialize_agent, AgentType
+from app.utils.config import llm
+from app.services.rag_service import rag_pipeline
+
+# Define tools
+tools = [
+    Tool(
+        name="RAG Search",
+        func=rag_pipeline,
+        description="Use this for answering questions from documents"
+    )
+]
+
+# Initialize agent
+agent_executor = initialize_agent(
+    tools,
+    llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True
+)
 
 def agent(query: str):
-    query_lower = query.lower()
-
-    if "document" in query_lower or "rag" in query_lower:
-        return rag_pipeline(query)
-
-    elif "hello" in query_lower:
-        return "Hi! How can I help you?"
-
-    else:
-        return call_llm(query)
+    return agent_executor.run(query)
