@@ -16,3 +16,12 @@ def log_response(log_data, response: str):
 
     logging.info(log_data)
     return log_data
+def log_llm_usage(response):
+    try:
+        usage = response.response_metadata.get("token_usage", {})
+        return {
+            "prompt_tokens": usage.get("prompt_tokens"),
+            "completion_tokens": usage.get("completion_tokens")
+        }
+    except:
+        return {}
