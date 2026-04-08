@@ -1,8 +1,10 @@
+from langsmith import traceable
 from openai import OpenAI
 from app.utils.config import OPENAI_API_KEY, MODEL_NAME
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 
+@traceable(name="LLM Call")
 def call_llm(prompt: str):
     response = client.chat.completions.create(
         model=MODEL_NAME,
