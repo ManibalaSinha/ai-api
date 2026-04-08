@@ -22,6 +22,6 @@ agent_executor = initialize_agent(
     verbose=True
 )
 
-@traceable(name="Agent Execution")
+@traceable(name="Agent Execution", metadata={"type": "orchestration"})
 def agent(query: str):
     return agent_executor.run(query)
