@@ -1,0 +1,7 @@
+vectorstore = Chroma.from_documents(
+    docs,
+    embeddings,
+    persist_directory="./app/data/chroma_db"
+)
+
+vectorstore.persist()
