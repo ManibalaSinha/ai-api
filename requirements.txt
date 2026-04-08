@@ -2,7 +2,14 @@ fastapi
 uvicorn
 gunicorn
 python-multipart
+pydantic
 openai
+langchain
+langchain-openai
+chromadb
+tiktoken
+langsmith
+pytest
 transformers
 torch
 Pillow
