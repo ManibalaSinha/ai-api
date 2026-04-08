@@ -1,159 +1,229 @@
-# AI API Service (Production-Ready Microservice)
+#  AI API – Production-Ready LLM Backend (RAG + Agents + Observability)
 
-This microservice includes robust API design, prompt engineering, caching, validation, observability, and deployment readiness.
-<p align="center">
-  
-</p>
-=======
+##  Overview
 
-## Overview
+This project is a **production-ready AI backend system** built using **FastAPI, LangChain, and OpenAI**.
+It supports **Retrieval-Augmented Generation (RAG)**, **agent-based orchestration**, and **LLM observability using LangSmith**.
 
-AI API is a backend AI microservice built with TypeScript (FastAPI version also supported).
-It focuses on reliability, scalability, and clean architecture — not just calling LLMs, but doing it correctly, safely, and cost-effectively in production.
-
-* Industrial-grade AI model integration
-* Prompt engineering and structured responses
-* Reliable error handling with retries & backoff
-* Caching to reduce LLM cost & latency
-* Security, monitoring, scalability, and CI/CD-ready deployment patterns
+The system is designed to simulate real-world AI backend architecture used in enterprise applications.
 
 ---
 
-# Key Features
+##  Key Features
 
-## **1. Prompt Engineering & AI Model Integration**
-
-* Role-based few-shot prompting
-* Structured JSON output enforcement
-* Wrapper around OpenAI + future model adapters
-* Schema validation for deterministic results
-
----
-
-## **2. Data Processing & Validation**
-
-* Strict input schema validation
-* Normalization & sanitization layer
-* Ready to extend for:
-
-  * PDF processing
-  * Log ingestion
-  * Multi-step pipelines
+*  FastAPI-based scalable backend
+*  RAG pipeline using vector database (Chroma)
+*  LangChain-powered agent orchestration
+*  Function/tool calling support
+*  Prompt engineering with hallucination control
+*  Observability & tracing via LangSmith
+*  Structured logging (latency, responses)
+*  Modular and production-ready architecture
+*  Unit testing support
 
 ---
 
-## **3. Reliability & Resilience**
+##  Architecture
 
-* **Retry w/ exponential backoff**
-* **Redis caching** to avoid duplicate LLM calls
-* Error-tolerant request flow
-* Fully containerized (Docker)
-* Supports horizontal scaling (Kubernetes-ready)
-
----
-
-## **4. Security & Compliance (Partial / Improving)**
-
-* Basic safeguards against invalid / unsafe outputs
-* Extensible modules for:
-
-  * **PII redaction** (regex/NER-based)
-  * GDPR / HIPAA-friendly data flows
-  * OpenAI Moderation API or custom filters
-
----
-
-## **5. Monitoring & Cost Optimization**
-
-Current:
-
-* Request + error logging
-* Cached-call optimization
-* Payload minimization
-
-Planned:
-
-* Token-level cost tracking
-* Prometheus/Grafana metrics dashboard
-* Alerts for spikes in usage, cost, or latency
-
----
-
-## **6. Deployment & Scalability**
-
-* Clean microservice architecture (Node.js/TS + optional FastAPI)
-* Dockerized for production
-* CI/CD-friendly structure (GitHub Actions support)
-* Designed for multi-instance scaling & traffic routing
-
----
-
-# **Feature Roadmap (In Development)**
-
-| Feature Area                                   | Status          |
-| ---------------------------------------------- | --------------- |
-| Kubernetes multi-instance scaling              |  In Progress  |
-| Vector DB + RAG workflow (Pinecone / Weaviate) |  In Progress  |
-| Message queues + DLQ (RabbitMQ / Kafka)        |  In Progress  |
-| PII Redaction                                  |  Implementing |
-| Moderation & Compliance                        |  Implementing |
-| Cost dashboards & alerts (Prometheus)          |  In Progress  |
-
----
-
-#  **Why This Project Matters**
-
-This service mirrors the real responsibilities of a **Senior AI Integration Engineer**, including:
-
-* Designing structured, safe prompt pipelines
-* Integrating multiple LLMs reliably
-* Ensuring cost-efficiency at scale
-* Handling resilience, fallbacks, backpressure
-* Enforcing compliance (PII, moderation, audits)
-* Preparing microservices for cloud-native production environments
-
-As more components (RAG, queues, observability) are added, this repository becomes a **complete showcase of enterprise-grade AI API engineering**.
-
----
-
-#  **Quick Start**
-
-```bash
-git clone https://github.com/ManibalaSinha/devstations.git
-cd devstations
-npm install
-npm run dev          # Start local dev server
-npm run build        # Build for production
-
-# Build Docker image
-docker build -t devstations .
+```
+User Query
+   ↓
+FastAPI Endpoint (/ask)
+   ↓
+Agent Layer (decision making)
+   ↓
+ ┌───────────────┬───────────────┐
+ ↓               ↓               ↓
+RAG Pipeline   LLM Call     Tool/API
+ ↓
+Vector DB (Chroma)
+ ↓
+Context + Prompt
+ ↓
+LLM Response
+ ↓
+Logging + Tracing (LangSmith)
+ ↓
+API Response
 ```
 
 ---
 
-#  **Tech Stack**
+##  Project Structure
 
-* **TypeScript / Node.js**
-* **FastAPI (optional Python implementation)**
-* Redis (Caching)
-* Docker
-* OpenAI API
-* Prometheus/Grafana (planned)
-* Pinecone / Weaviate (planned for RAG)
-* Kafka / RabbitMQ (planned)
+```
+app/
+ ├── main.py
+ ├── routes/
+ │   └── ask.py
+ ├── services/
+ │   ├── rag_service.py
+ │   ├── agent_service.py
+ │   ├── llm_service.py
+ ├── models/
+ │   └── schemas.py
+ ├── utils/
+ │   ├── logger.py
+ │   ├── config.py
+tests/
+ └── test_api.py
+```
 
 ---
 
-#  **About**
+##  Tech Stack
 
-**AI / Python / Backend Engineering**
-Production-grade AI API service focused on prompt engineering, RAG pipelines, caching, monitoring, and secure cloud deployment.
+* **Backend:** FastAPI
+* **LLM Framework:** LangChain
+* **LLM Provider:** OpenAI
+* **Vector DB:** Chroma
+* **Observability:** LangSmith
+* **Testing:** Pytest
 
-🌐 Project website:
-`https://manibalasinha.github.io/ai-api/`
+---
 
+##  How It Works
 
+### 1. RAG Pipeline
 
+* Documents are split into chunks
+* Converted into embeddings
+* Stored in vector DB
+* Top-K relevant documents retrieved
+* Injected into prompt for answer generation
 
+### 2. Agent System
 
+* Determines whether to:
 
+  * Use RAG
+  * Call LLM directly
+  * Use tools/APIs
+* Built using LangChain agent executor
+
+### 3. Prompt Engineering
+
+* Strict system prompts used
+* Prevent hallucination
+* Enforce structured responses
+
+### 4. Observability
+
+* LangSmith traces:
+
+  * LLM calls
+  * Agent decisions
+  * Retrieval steps
+* Logs include:
+
+  * Latency
+  * Input/output
+  * Token usage
+
+---
+
+##  API Usage
+
+### Endpoint
+
+```
+POST /ask
+```
+
+### Request
+
+```json
+{
+  "query": "What is RAG?"
+}
+```
+
+### Response
+
+```json
+{
+  "answer": "RAG stands for Retrieval Augmented Generation...",
+  "latency": 0.45
+}
+```
+
+---
+
+##  Running Locally
+
+### 1. Clone repo
+
+```
+git clone <your-repo-url>
+cd ai-api
+```
+
+### 2. Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### 3. Set environment variables
+
+```
+export OPENAI_API_KEY=your_key
+export LANGCHAIN_API_KEY=your_langsmith_key
+export LANGCHAIN_TRACING_V2=true
+```
+
+### 4. Run server
+
+```
+uvicorn app.main:app --reload
+```
+
+---
+
+##  Testing
+
+```
+pytest
+```
+
+---
+
+##  Observability (LangSmith)
+
+* Tracks full LLM lifecycle
+* Debug prompts, responses, failures
+* Monitor latency and token usage
+
+---
+
+##  Design Decisions
+
+* **Chroma DB** used for simplicity and local persistence
+* **LangChain agents** for flexible orchestration
+* **Modular services** for scalability
+* **Structured logging** for production readiness
+
+---
+
+##  Future Improvements
+
+* Add Pinecone / scalable vector DB
+* Multi-agent workflows
+* Caching layer (Redis)
+* Streaming responses
+* Authentication & rate limiting
+
+---
+
+##  Author
+
+**Manibala Sinha**
+Senior Backend Engineer | Python | FastAPI | AI Systems
+
+---
+
+##  Summary
+
+* End-to-end LLM backend design
+* Production-level architecture
+* Real-world AI engineering practices
