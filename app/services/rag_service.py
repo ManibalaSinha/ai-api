@@ -21,7 +21,7 @@ docs = text_splitter.split_documents(documents)
 # Vector DB
 vectorstore = Chroma.from_documents(docs, embeddings)
 
-@traceable(name="RAG Pipeline")
+@traceable(name="RAG Pipeline", metadata={"type": "retrieval"})
 def rag_pipeline(query: str):
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
