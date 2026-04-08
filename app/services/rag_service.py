@@ -1,6 +1,7 @@
 from langchain.vectorstores import Chroma
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.docstore.document import Document
+from langsmith import traceable
 from app.utils.config import embeddings, llm
 
 # Sample documents (replace later with DB/files)
@@ -20,6 +21,7 @@ docs = text_splitter.split_documents(documents)
 # Vector DB
 vectorstore = Chroma.from_documents(docs, embeddings)
 
+@traceable(name="RAG Pipeline")
 def rag_pipeline(query: str):
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
