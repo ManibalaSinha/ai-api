@@ -1,6 +1,7 @@
 from app.services.llm_service import call_llm
 from langchain.tools import Tool
 from langchain.agents import initialize_agent, AgentType
+from langsmith import traceable
 from app.utils.config import llm
 from app.services.rag_service import rag_pipeline
 
@@ -21,5 +22,6 @@ agent_executor = initialize_agent(
     verbose=True
 )
 
+@traceable(name="Agent Execution")
 def agent(query: str):
     return agent_executor.run(query)
